@@ -1,15 +1,18 @@
 package com.example.bonus
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.core.content.edit
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -38,10 +41,31 @@ class SignUpActivity : AppCompatActivity() {
         phoneEditText.addTextChangedListener { validateFields() }
         genderRadioGroup.setOnCheckedChangeListener { _, _ -> validateFields() }
 
-
         signupBtn.setOnClickListener {
-            val intent = Intent(this, LandingActivity::class.java)
-            startActivity((intent))
+            // Save user data
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            val phone = phoneEditText.text.toString()
+            val selectedGenderId = genderRadioGroup.checkedRadioButtonId
+            val genderRadioButton = findViewById<RadioButton>(selectedGenderId)
+            val gender = genderRadioButton.text.toString()
+
+            val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            sharedPreferences.edit {
+                putString("email", email)
+                putString("password", password)
+                putString("phone", phone)
+                putString("gender", gender)
+            }
+
+            // Navigate to LandingActivity
+            val intent = Intent(this, LandingActivity::class.java).apply {
+                putExtra("email", email)
+                putExtra("phone", phone)
+                putExtra("gender", gender)
+            }
+            startActivity(intent)
+            finish()
         }
     }
 

@@ -1,41 +1,27 @@
 package com.example.bonus
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.bonus.databinding.ActivityLanding2Binding
 
 class LandingActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityLanding2Binding
-
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_landing)
 
-        binding = ActivityLanding2Binding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val emailTextView = findViewById<TextView>(R.id.email_text_view)
+        val phoneTextView = findViewById<TextView>(R.id.phone_text_view)
+        val genderTextView = findViewById<TextView>(R.id.gender_text_view)
 
-        setSupportActionBar(binding.toolbar)
+        val email = intent.getStringExtra("email")
+        val phone = intent.getStringExtra("phone")
+        val gender = intent.getStringExtra("gender")
 
-        val navController = findNavController(R.id.nav_host_fragment_content_landing2)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
-        }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_landing2)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        emailTextView.text = "Email: $email"
+        phoneTextView.text = "Phone: $phone"
+        genderTextView.text = "Gender: $gender"
     }
 }

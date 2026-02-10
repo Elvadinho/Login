@@ -1,70 +1,74 @@
 package com.example.bonus
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.util.Patterns
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var email: EditText
-    private lateinit var password: EditText
+    private lateinit var emailEditText: EditText
+    private lateinit var passwordEditText: EditText
     private lateinit var loginBtn: Button
-    private lateinit var text: TextView
+    private lateinit var welcomeText: TextView
 
     @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        email = findViewById(R.id.email)
-        text = findViewById(R.id.text)
-        password = findViewById(R.id.password)
+        emailEditText = findViewById(R.id.email)
+        welcomeText = findViewById(R.id.text)
+        passwordEditText = findViewById(R.id.password)
         loginBtn = findViewById(R.id.loginBtn)
 
-
         val signBtn = findViewById<Button>(R.id.signBtn)
-        text.text = "Welcome Back😁"
+        welcomeText.text = "Welcome Back😁"
 
         loginBtn.isEnabled = false
 
-        email.addTextChangedListener {
-            validateInput()
-        }
-
-        password.addTextChangedListener {
-            validateInput()
-        }
+        emailEditText.addTextChangedListener { validateInput() }
+        passwordEditText.addTextChangedListener { validateInput() }
 
         loginBtn.setOnClickListener {
-            if (email.text.isEmpty()) {
-                text.text = "Enter Email"
-            } else if (password.text.toString() == "") {
-                text.text = "Enter password"
-            } else {
-                text.text = "Login successful"
-            }
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
 
-            val intent = Intent(this, LandingActivity::class.java)
-            startActivity((intent))
+            val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            val storedEmail = sharedPreferences.getString("email", null)
+            val storedPassword = sharedPreferences.getString("password", null)
+            val storedPhone = sharedPreferences.getString("phone", null)
+            val storedGender = sharedPreferences.getString("gender", null)
+
+            if (email == storedEmail && password == storedPassword) {
+                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LandingActivity::class.java).apply {
+                    putExtra("email", storedEmail)
+                    putExtra("phone", storedPhone)
+                    putExtra("gender", storedGender)
+                }
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
+            }
         }
 
         signBtn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
-            startActivity((intent))
+            startActivity(intent)
         }
     }
+
     private fun validateInput() {
-        val emailText = email.text.toString()
-        val passwordText = password.text.toString()
+        val emailText = emailEditText.text.toString()
+        val passwordText = passwordEditText.text.toString()
 
         val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(emailText).matches()
         val isPasswordValid = passwordText.length >= 8
