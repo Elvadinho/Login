@@ -55,4 +55,7 @@
     </string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="create_your_account">Create your Account</string>
+    <string name="user_information">User Information</string>
+    <string name="profile_icon_desc">Profile Icon</string>
+    <string name="welcome_to_our_app">Welcome to My App!</string>
 </resources>
