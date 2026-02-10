@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val text = findViewById<TextView>(R.id.text)
         val password = findViewById<EditText>(R.id.password)
         val loginBtn = findViewById<Button>(R.id.loginBtn)
+        val signBtn = findViewById<Button>(R.id.signBtn)
         text.text = "Welcome"
 
         loginBtn.isEnabled = false
@@ -48,5 +49,10 @@ class MainActivity : AppCompatActivity() {
            val intent = Intent(this, LandingActivity::class.java)
            startActivity((intent))
        }
+
+        signBtn.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity((intent))
+        }
     }
 }
