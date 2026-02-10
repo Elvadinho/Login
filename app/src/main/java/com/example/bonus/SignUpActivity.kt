@@ -9,14 +9,13 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
+    private lateinit var phoneEditText: EditText
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var signupBtn: Button
 
@@ -28,6 +27,7 @@ class SignUpActivity : AppCompatActivity() {
 
         emailEditText = findViewById(R.id.email)
         passwordEditText = findViewById(R.id.password)
+        phoneEditText = findViewById(R.id.phone)
         genderRadioGroup = findViewById(R.id.gender_radio_group)
         signupBtn = findViewById(R.id.signupBtn)
 
@@ -35,6 +35,7 @@ class SignUpActivity : AppCompatActivity() {
 
         emailEditText.addTextChangedListener { validateFields() }
         passwordEditText.addTextChangedListener { validateFields() }
+        phoneEditText.addTextChangedListener { validateFields() }
         genderRadioGroup.setOnCheckedChangeListener { _, _ -> validateFields() }
 
 
@@ -47,11 +48,13 @@ class SignUpActivity : AppCompatActivity() {
     private fun validateFields() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
+        val phone = phoneEditText.text.toString()
         val genderSelected = genderRadioGroup.checkedRadioButtonId != -1
 
         val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
         val isPasswordValid = password.length >= 8
+        val isPhoneValid = phone.isNotEmpty()
 
-        signupBtn.isEnabled = isEmailValid && isPasswordValid && genderSelected
+        signupBtn.isEnabled = isEmailValid && isPasswordValid && genderSelected && isPhoneValid
     }
 }

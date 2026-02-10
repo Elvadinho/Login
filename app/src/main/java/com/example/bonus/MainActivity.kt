@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val signBtn = findViewById<Button>(R.id.signBtn)
-        text.text = "Welcome"
+        text.text = "Welcome Back😁"
 
         loginBtn.isEnabled = false
 

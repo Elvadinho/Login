@@ -4,7 +4,7 @@
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="button">Login</string>
-    <string name="login_title">Welcome!</string>
+    <string name="login_title">Welcome Back😁</string>
     <string name="login_icon_description">Login Icon</string>
     <string name="signup">SignUp</string>
     <string name="signUp">SignUp</string>
@@ -54,4 +54,5 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="create_your_account">Create your Account</string>
 </resources>
