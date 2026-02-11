@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         loginBtn.isEnabled = false
 
 
+
         emailEditText.addTextChangedListener { validateInput() }
         passwordEditText.addTextChangedListener { validateInput() }
 
