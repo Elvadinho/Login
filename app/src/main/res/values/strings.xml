@@ -33,7 +33,7 @@
         Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
         amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
         molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        interdum nunc ligula, et fermentum metus hendrit id. Vestibulum lectus felis, dictum at
         lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
         in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
         est.\n\n
@@ -43,11 +43,12 @@
         eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
         quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
         ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+
         placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
         convallis.\n\n
         Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
         malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed effr ullamcorper,
         libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
         sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
@@ -59,4 +60,12 @@
     <string name="profile_icon_desc">Profile Icon</string>
     <string name="welcome_to_our_app">Welcome to My App!</string>
     <string name="logout">Logout</string>
+    <string name="guessing_game">Guessing Game</string>
+    <string name="game_intro">I\'m thinking of a number. Can you guess it?</string>
+    <string name="level_1">Level 1 (0-10)</string>
+    <string name="level_2">Level 2 (0-100)</string>
+    <string name="level_3">Level 3 (0-1000)</string>
+    <string name="max_tries">Max Tries</string>
+    <string name="enter_guess">Enter your guess</string>
+    <string name="guess">Guess</string>
 </resources>
